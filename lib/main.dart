@@ -10,21 +10,25 @@ import 'app/app.router.dart';
 import 'constants/strings.dart';
 import 'services/third_party/easyloading/easyloading.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-  await ThemeManager.initialise();
-  await setupLocator();
+void main() {
+  runZonedGuarded<Future<void>>(() async {
+    WidgetsFlutterBinding.ensureInitialized();
 
-  runZonedGuarded(() {
+    // await Firebase.initializeApp();
+    // Pass all uncaught errors from the framework to Crashlytics.
+    // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+
+    await ThemeManager.initialise();
+    await setupLocator();
+
     runApp(MyApp());
   }, reportError);
 }
 
 void reportError(Object error, StackTrace stackTrace) async {
-  // TODO: Report Crash
+  // FirebaseCrashlytics.instance.recordError(error,stackTrace);
   debugPrint(
-      '(ERROR) main.dart:main. error: ${error.toString()} stack-trace: ${stackTrace.toString()}');
+      '(ERROR) main.dart:main() error: ${error.toString()} stack-trace: ${stackTrace.toString()}');
 }
 
 class MyApp extends StatelessWidget {

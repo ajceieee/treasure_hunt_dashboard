@@ -1,3 +1,4 @@
+import 'package:flutter_boiler_plate/app/app.logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'prefs.dart';
@@ -10,13 +11,13 @@ class SharedPrefsService extends PrefsService {
   static Future<SharedPrefsService> getInstance() async {
     if (_instance == null) {
       // Initialise the asynchronous shared preferences
-
       _preferences = await SharedPreferences.getInstance();
       _instance = SharedPrefsService();
     }
-
     return _instance!;
   }
+
+  final log = getLogger('SharedPrefsService');
 
   @override
   void saveToDisk<T>(String key, T content) {
@@ -35,11 +36,13 @@ class SharedPrefsService extends PrefsService {
     if (content is List<String>) {
       _preferences!.setStringList(key, content);
     }
+    log.i('Saved key: $key value: $content in Shared Preferences');
   }
 
   @override
   dynamic getFromDisk(String key) {
     var value = _preferences!.get(key);
+    log.i('Retrieved key: $key value: $value from Shared Preferences');
     return value;
   }
 }
