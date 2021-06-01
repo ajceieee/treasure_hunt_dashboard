@@ -22,7 +22,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="treasure_hunt">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
+  <meta name="google-signin-client_id" content="437248059854-hlcd845vaf23tc5cijjoq1b17c9o8sm1.apps.googleusercontent.com">
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
@@ -40,17 +40,11 @@
       });
     }
   </script>
-  <script src="main.dart.js" type="application/javascript"></script>
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js"></script>
-
   <script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
     apiKey: "AIzaSyAvQLnn_E3UHMBNCl_WdVDK2mIt7syS4H4",
     authDomain: "quaruntime.firebaseapp.com",
@@ -64,5 +58,7 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 </script>
+  <script src="main.dart.js" type="application/javascript"></script>
+
 </body>
 </html>

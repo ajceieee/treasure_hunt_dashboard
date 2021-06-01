@@ -24,7 +24,7 @@ class SplashScreenVM extends FutureViewModel<bool> {
   }
 
 
-  void navigateHome() => _navigationService.navigateTo(Routes.loginView);
+  void navigateHome() => _navigationService.clearStackAndShow(Routes.loginView);
 
   @override
   void onError(error) {

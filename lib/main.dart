@@ -42,7 +42,6 @@ class MyApp extends StatelessWidget {
         themeMode: themeMode,
         navigatorKey: StackedService.navigatorKey,
         onGenerateRoute: StackedRouter().onGenerateRoute,
-        initialRoute: Routes.splashScreenV,
         builder: locator<EasyLoadingService>().initialize(),
       ),
     );
