@@ -22,11 +22,7 @@ void main() {
   }, reportError);
 }
 
-void reportError(Object error, StackTrace stackTrace) async {
-  FirebaseCrashlytics.instance.recordError(error,stackTrace);
-  debugPrint(
-      '(ERROR) main.dart:main() error: ${error.toString()} stack-trace: ${stackTrace.toString()}');
-}
+void reportError(Object error, StackTrace stackTrace) async {}
 
 class MyApp extends StatelessWidget {
   @override

@@ -9,7 +9,6 @@ class SplashScreenVD extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SplashScreenVM>.reactive(
-      onModelReady: (model) => model.initialise(),
       builder: (context, model, child) => Scaffold(
         body: Center(
           child: AppCard1(

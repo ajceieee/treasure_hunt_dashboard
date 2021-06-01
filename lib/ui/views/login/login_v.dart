@@ -6,7 +6,8 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
-        mobile: (context) => LoginViewDesktop(),
-        desktop: (context) => LoginViewDesktop());
+      mobile: (context) => LoginViewDesktop(),
+      desktop: (context) => LoginViewDesktop(),
+    );
   }
 }

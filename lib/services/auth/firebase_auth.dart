@@ -1,28 +1,25 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_boiler_plate/app/app.locator.dart';
 import 'package:flutter_boiler_plate/app/app.logger.dart';
 import 'package:flutter_boiler_plate/services/auth/auth.dart';
-import 'package:flutter_boiler_plate/services/crash_analytics/firebase_crash_analytics.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthService extends AuthService {
   static FirebaseAuthService? _instance;
-  final FirebaseCrashAnalyticsService _crashAnalyticsService;
   final FirebaseAuth auth = FirebaseAuth.instance;
   final log = getLogger('FirebaseAuthService');
 
   static Future<FirebaseAuthService> getInstance() async {
     if (_instance == null) {
       // Initialise constructor with required parameters
-      _instance = FirebaseAuthService(locator<FirebaseCrashAnalyticsService>());
+      _instance = FirebaseAuthService();
     }
     return _instance!;
   }
 
-  FirebaseAuthService(this._crashAnalyticsService);
+
 
   User? user;
 
@@ -44,11 +41,9 @@ class FirebaseAuthService extends AuthService {
       ;
     } on FirebaseAuthException catch (e, s) {
       log.e('FirebaseAuthException', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateAuthException(e);
     } catch (e, s) {
       log.e('Error', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateError(e);
     }
     return userCredential;
@@ -65,11 +60,9 @@ class FirebaseAuthService extends AuthService {
           email: email, password: password);
     } on FirebaseAuthException catch (e, s) {
       log.e('FirebaseAuthException', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateAuthException(e);
     } catch (e, s) {
       log.e('Error', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateError(e);
     }
     return userCredential;
@@ -84,11 +77,9 @@ class FirebaseAuthService extends AuthService {
           email: email, password: password);
     } on FirebaseAuthException catch (e, s) {
       log.e('FirebaseAuthException', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateAuthException(e);
     } catch (e, s) {
       log.e('Error', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateError(e);
     }
     return userCredential;
@@ -121,11 +112,10 @@ class FirebaseAuthService extends AuthService {
       userCredential = await signInWithCredential(credential);
     } on FirebaseAuthException catch (e, s) {
       log.e('FirebaseAuthException', e, s);
-      _crashAnalyticsService.recordError(e, s);
+
       updateAuthException(e);
     } catch (e, s) {
       log.e('Error', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateError(e);
     }
     return userCredential;
@@ -148,11 +138,9 @@ class FirebaseAuthService extends AuthService {
       userCredential = await signInWithCredential(facebookAuthCredential);
     } on FirebaseAuthException catch (e, s) {
       log.e('FirebaseAuthException', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateAuthException(e);
     } catch (e, s) {
       log.e('Error', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateError(e);
     }
     return userCredential;
@@ -176,11 +164,9 @@ class FirebaseAuthService extends AuthService {
       );
     } on FirebaseAuthException catch (e, s) {
       log.e('FirebaseAuthException', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateAuthException(e);
     } catch (e, s) {
       log.e('Error', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateError(e);
     }
   }
@@ -221,11 +207,9 @@ class FirebaseAuthService extends AuthService {
       userCredential = await signInWithCredential(credential);
     } on FirebaseAuthException catch (e, s) {
       log.e('FirebaseAuthException', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateAuthException(e);
     } catch (e, s) {
       log.e('Error', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateError(e);
     }
     return userCredential;
@@ -250,11 +234,9 @@ class FirebaseAuthService extends AuthService {
       userCredential = await auth.signInWithCredential(credential);
     } on FirebaseAuthException catch (e, s) {
       log.e('FirebaseAuthException', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateAuthException(e);
     } catch (e, s) {
       log.e('Error', e, s);
-      _crashAnalyticsService.recordError(e, s);
       updateError(e);
     }
     return userCredential;

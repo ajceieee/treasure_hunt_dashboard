@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler_plate/ui/views/login/Login_vm.dart';
 import 'package:flutter_boiler_plate/ui/widgets/card.dart';

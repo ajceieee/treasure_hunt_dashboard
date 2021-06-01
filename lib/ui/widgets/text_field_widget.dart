@@ -63,7 +63,7 @@ class TextFieldWidget extends StatelessWidget {
             filled: true,
             labelText: labelText,
             labelStyle: TextStyle(
-              color: Colors.yellowAccent,
+              color: Colors.black,
               fontFamily: 'Poppins-Regular',
               fontSize: 16,
             ),

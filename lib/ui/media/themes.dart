@@ -15,6 +15,7 @@ class AppTheme {
     brightness: Brightness.light,
     backgroundColor: Colors.blue[300],
     accentColor: Colors.grey[200],
+    primaryColor: Colors.white,
   );
 
   ThemeData get lightTheme => _lightTheme;
