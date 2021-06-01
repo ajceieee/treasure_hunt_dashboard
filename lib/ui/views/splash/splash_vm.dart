@@ -29,8 +29,9 @@ class SplashScreenVM extends FutureViewModel<bool> {
 
   @override
   void onData(bool? data) async {
+    print(data);
     if (data == true) {
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(Duration(milliseconds: 5000));
       _navigationService.replaceWithTransition(
         UpdateScreenV(),
         duration: Duration(seconds: 1),

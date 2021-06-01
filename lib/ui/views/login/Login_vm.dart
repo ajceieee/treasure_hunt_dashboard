@@ -1,10 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_boiler_plate/app/app.locator.dart';
-import 'package:flutter_boiler_plate/app/app.router.dart';
 import 'package:flutter_boiler_plate/constants/strings.dart';
 import 'package:flutter_boiler_plate/services/auth/firebase_auth.dart';
-import 'package:flutter_boiler_plate/services/crash_analytics/firebase_crash_analytics.dart';
 import 'package:flutter_boiler_plate/services/third_party/easyloading/easyloading.dart';
 import 'package:flutter_boiler_plate/ui/views/update/update_v.dart';
 import 'package:stacked/stacked.dart';
