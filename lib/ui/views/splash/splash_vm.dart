@@ -15,29 +15,20 @@ class SplashScreenVM extends FutureViewModel<bool> {
   @override
   Future<bool> futureToRun() async => await runSplashService();
 
+
   Future<bool> runSplashService() async {
-    // mocking function delay
     await Future.delayed(Duration(seconds: 5));
-
-    // mocking response
     final response = true;
-
+    navigateHome();
     return response;
   }
 
-  @override
-  void onData(bool? data) {
-    navigateHome();
-    super.onData(data);
-  }
 
-  void navigateHome() => _navigationService.navigateTo(Routes.homeScreenV);
+  void navigateHome() => _navigationService.navigateTo(Routes.loginView);
 
   @override
   void onError(error) {
     _easyLoadingService.showToast(ERROR_RETRY);
-
-    // re-initializing splash service when failed
     initialise();
     super.onError(error);
   }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boiler_plate/ui/views/splash/splash_vd.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 
 import 'splash_vm.dart';
@@ -8,13 +10,9 @@ class SplashScreenV extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<SplashScreenVM>.reactive(
-      builder: (context, model, child) => Scaffold(
-        body: Center(
-          child: Text(model.title),
-        ),
-      ),
-      viewModelBuilder: () => SplashScreenVM(),
+    return ScreenTypeLayout.builder(
+      desktop: (context) => SplashScreenVD(),
+      mobile: (BuildContext context) => SplashScreenVD(),
     );
   }
 }

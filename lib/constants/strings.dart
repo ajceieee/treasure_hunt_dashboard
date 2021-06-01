@@ -9,3 +9,4 @@ const String HOME_TITLE = 'HOME PAGE';
 
 // error
 const String ERROR_RETRY = 'Error Occurred\nRetrying';
+
