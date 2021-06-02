@@ -20,7 +20,6 @@ class FirebaseAuthService extends AuthService {
   }
 
 
-
   User? user;
 
   @override
@@ -32,6 +31,8 @@ class FirebaseAuthService extends AuthService {
   User? get currentUser => auth.currentUser;
 
   //============================================================================
+
+
 
   @override
   Future<UserCredential?> signInAnonymously() async {

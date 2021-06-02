@@ -6,7 +6,7 @@ class TextFieldWidget extends StatelessWidget {
   final String labelText;
   final String hintText;
   final Function(String) onChanged;
-  final Function(String) validator;
+  final String? Function(String?)? validator;
   final bool? obScureText;
   final Widget? suffixIcon;
   final bool? enabled;
@@ -57,6 +57,7 @@ class TextFieldWidget extends StatelessWidget {
           style: TextStyle(
             fontFamily: 'Poppins-Regular',
           ),
+          validator: validator,
           decoration: InputDecoration(
             suffixIcon: suffixIcon ?? null,
             fillColor: Colors.white,

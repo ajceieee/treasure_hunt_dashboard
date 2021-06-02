@@ -21,9 +21,12 @@ class SplashScreenVM extends FutureViewModel<bool> {
   Future<bool> futureToRun() async => await runSplashService();
 
   Future<bool> runSplashService() async {
-    await Future.delayed(Duration(milliseconds: 2500));
-    User? user = _authService.currentUser;
-    if (user?.uid != null) return true;
+    await Future.delayed(Duration(seconds: 1));
+    User? user =  _authService.currentUser;
+    if(user == null){
+      user = await _authService.authStateChanges.first;
+    }
+    if (user != null) return true;
     return false;
   }
 
@@ -49,6 +52,7 @@ class SplashScreenVM extends FutureViewModel<bool> {
 
   @override
   void onError(error) {
+    print("error => $error" );
     _easyLoadingService.showToast(ERROR_RETRY);
     initialise();
     super.onError(error);

@@ -1,13 +1,10 @@
 import 'dart:async';
-
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler_plate/app/app.locator.dart';
 import 'package:flutter_boiler_plate/ui/media/themes.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
-
 import 'app/app.router.dart';
 import 'constants/strings.dart';
 import 'services/third_party/easyloading/easyloading.dart';
@@ -19,6 +16,8 @@ void main() {
     await ThemeManager.initialise();
     await setupLocator();
     runApp(MyApp());
+
+
   }, reportError);
 }
 

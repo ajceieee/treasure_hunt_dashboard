@@ -30,8 +30,7 @@ dependencies:
   # Firebase Support
   firebase_core: ^1.1.1
   firebase_auth: ^1.1.4
-  firebase_analytics: ^8.1.0
-  firebase_crashlytics: ^2.0.4
+
 
   # Authentication Services
   google_sign_in: ^5.0.3
