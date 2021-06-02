@@ -31,7 +31,6 @@ dependencies:
   firebase_core: ^1.1.1
   firebase_auth: ^1.1.4
 
-
   # Authentication Services
   google_sign_in: ^5.0.3
   flutter_facebook_auth: ^3.3.3+1
@@ -39,15 +38,14 @@ dependencies:
   # Pretty Printer
   logger: ^1.0.0
 
-
-
   # responsive builder
   responsive_builder: ^0.4.1
 
   # sign in buttons
   flutter_signin_button: ^2.0.0
 
-
+  # Dio for network request
+  dio: ^4.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

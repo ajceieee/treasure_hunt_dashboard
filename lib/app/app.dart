@@ -1,7 +1,10 @@
 import 'package:flutter_boiler_plate/services/auth/firebase_auth.dart';
-import 'package:flutter_boiler_plate/services/crash_analytics/firebase_crash_analytics.dart';
 import 'package:flutter_boiler_plate/services/local_storage/shared_prefs.dart';
+import 'package:flutter_boiler_plate/services/network/api_service.dart';
+import 'package:flutter_boiler_plate/services/network/api_services/user_service.dart';
 import 'package:flutter_boiler_plate/services/third_party/easyloading/easyloading.dart';
+import 'package:flutter_boiler_plate/services/user_service/user_service.dart';
+import 'package:flutter_boiler_plate/ui/views/home/home_v.dart';
 import 'package:flutter_boiler_plate/ui/views/update/update_v.dart';
 import 'package:flutter_boiler_plate/ui/views/login/login_v.dart';
 import 'package:flutter_boiler_plate/ui/views/splash/splash_v.dart';
@@ -14,7 +17,8 @@ import 'package:stacked_themes/stacked_themes.dart';
   routes: [
     MaterialRoute(page: SplashScreenV, initial: true),
     MaterialRoute(page: UpdateScreenV),
-    MaterialRoute(page: LoginView)
+    MaterialRoute(page: LoginView),
+    MaterialRoute(page: HomeScreenV)
   ],
   dependencies: [
     // lazy-singletons
@@ -23,6 +27,17 @@ import 'package:stacked_themes/stacked_themes.dart';
     LazySingleton(
       classType: ThemeService,
       resolveUsing: ThemeService.getInstance,
+    ),
+    LazySingleton(
+      classType: ApiService,
+    ),
+    LazySingleton(
+      classType: UserService,
+    ),
+
+    // Factory
+    Factory(
+      classType: UserApiService,
     ),
 
     // pre-resolves

@@ -18,12 +18,11 @@ class UpdateScreenV extends StatelessWidget {
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 0,
           centerTitle: true,
-          title: Text("Quaruntime"),
+          title: Text(model.updateVTitle),
         ),
         body: Center(
           child: Container(
             width: MediaQuery.of(context).size.width / 2,
-            height: MediaQuery.of(context).size.height / 2,
             child: AppCard1(
               child: Form(
                 key: model.formKey,
@@ -34,13 +33,17 @@ class UpdateScreenV extends StatelessWidget {
                       "Your Details",
                     ),
                     TextFieldWidget(
-                      enabled: false,
                       initialValue: model.name ?? "",
                       onChanged: (value) {
                         model.nameValue = value;
                       },
                       labelText: "Name",
-                      validator: (value) {},
+                      validator: (value) {
+                        if (value!.isEmpty)
+                          return "Please enter your name";
+                        else
+                          return null;
+                      },
                       hintText: "name",
                     ),
                     TextFieldWidget(
@@ -58,23 +61,25 @@ class UpdateScreenV extends StatelessWidget {
                       hintText: "Email",
                     ),
                     TextFieldWidget(
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        model.uCode = value;
+                      },
                       labelText: "Code",
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Field can't be empty";
-                        } else if (value.length < 6) {
-                          return "The code should be of length 6";
                         } else
                           return null;
                       },
                       hintText: "Code",
                     ),
-                    ButtonWidget(
-                       color: Colors.yellow,
-                      onPressed: model.onPressed,
-                      text: "Submit",
-                    )
+                    model.buttonState
+                        ? CircularProgressIndicator()
+                        : ButtonWidget(
+                            color: Colors.yellow,
+                            onPressed: model.onPressed,
+                            text: "Submit",
+                          )
                   ],
                 ),
               ),

@@ -1,5 +1,5 @@
 // app
-const String APP_NAME = 'Flutter Boiler Plate';
+const String APP_NAME = 'Quaruntime';
 
 // splash
 const String SPLASH_TITLE = 'SPLASH';
@@ -12,3 +12,11 @@ const String ERROR_RETRY = 'Error Occurred\nRetrying';
 
 // Failed Message Login
 const String FAIL_MSG = 'Failed to sign in, Please try again ';
+
+// update View Strings
+const String QUARUNTIME = "Quaruntime";
+const String ERROR_UPDATE = "Sorry, Failed to update \n Please try again";
+
+
+// Home
+const String FAILED_LOGOUT = "Failed to logout /n Please try again";

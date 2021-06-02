@@ -13,7 +13,10 @@ import 'package:stacked_themes/stacked_themes.dart';
 
 import '../services/auth/firebase_auth.dart';
 import '../services/local_storage/shared_prefs.dart';
+import '../services/network/api_service.dart';
+import '../services/network/api_services/user_service.dart';
 import '../services/third_party/easyloading/easyloading.dart';
+import '../services/user_service/user_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -27,6 +30,9 @@ Future setupLocator(
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => EasyLoadingService());
   locator.registerLazySingleton(() => ThemeService.getInstance());
+  locator.registerLazySingleton(() => ApiService());
+  locator.registerLazySingleton(() => UserService());
+  locator.registerFactory(() => UserApiService());
   final sharedPrefsService = await SharedPrefsService.getInstance();
   locator.registerSingleton(sharedPrefsService);
 
