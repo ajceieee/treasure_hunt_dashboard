@@ -34,35 +34,40 @@ class HomeScreenV extends StatelessWidget {
           ],
         ),
         body: Center(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                SizedBox(height: 16.0),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: Column(
-                        children: [
-                          UsersDetail(),
-                          SizedBox(height: 16.0),
-                          if (Responsive.isMobile(context)) UsersPosition(),
-                          SizedBox(height: 16.0),
-                          AllUsers(),
-                        ],
-                      ),
-                    ),
-                    if (!Responsive.isMobile(context)) SizedBox(width: 16.0),
-                    if (!Responsive.isMobile(context))
+          child: RefreshIndicator(
+            onRefresh: ()async{
+              model.initialise();
+            },
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  SizedBox(height: 16.0),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Expanded(
-                        flex: 2,
-                        child: UsersPosition(),
+                        flex: 5,
+                        child: Column(
+                          children: [
+                            UsersDetail(),
+                            SizedBox(height: 16.0),
+                            if (Responsive.isMobile(context)) UsersPosition(),
+                            SizedBox(height: 16.0),
+                            AllUsers(),
+                          ],
+                        ),
                       ),
-                  ],
-                )
-              ],
+                      if (!Responsive.isMobile(context)) SizedBox(width: 16.0),
+                      if (!Responsive.isMobile(context))
+                        Expanded(
+                          flex: 2,
+                          child: UsersPosition(),
+                        ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

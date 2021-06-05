@@ -18,7 +18,7 @@ class UsersPosition extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Storage Details",
+            "Top Players",
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
