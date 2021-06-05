@@ -6,14 +6,18 @@ class ButtonWidget extends StatelessWidget {
   final double? border;
   final double? padding;
   final VoidCallback? onPressed;
+  final Color? textColor;
+  final double? borderSide;
+
   FontWeight? fontWeight;
   ButtonWidget({
-    @required this.onPressed,
-    this.padding,
-    this.border,
-    @required this.text,
+    this.textColor,
+    this.borderSide,
+    this.text,
     this.color,
-    this.fontWeight,
+    this.border,
+    this.padding,
+    this.onPressed,
   });
   @override
   Widget build(BuildContext context) {
@@ -21,6 +25,10 @@ class ButtonWidget extends StatelessWidget {
       style: TextButton.styleFrom(
         backgroundColor: color,
         shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: Colors.black,
+            width: borderSide ?? 2.0,
+          ),
           borderRadius: BorderRadius.all(
             Radius.circular(border ?? 0),
           ),
@@ -35,7 +43,7 @@ class ButtonWidget extends StatelessWidget {
             fontFamily: "Poppins-Regular",
             fontSize: 22,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: textColor ?? Colors.white,
           ),
         ),
       ),

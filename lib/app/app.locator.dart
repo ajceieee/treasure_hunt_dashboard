@@ -17,16 +17,11 @@ import '../services/network/api_service.dart';
 import '../services/network/api_services/user_service.dart';
 import '../services/third_party/easyloading/easyloading.dart';
 import '../services/user_service/user_service.dart';
+import 'package:get_it/get_it.dart';
 
-final locator = StackedLocator.instance;
+final locator = GetIt.instance;
 
-Future setupLocator(
-    {String? environment, EnvironmentFilter? environmentFilter}) async {
-// Register environments
-  locator.registerEnvironment(
-      environment: environment, environmentFilter: environmentFilter);
-
-// Register dependencies
+Future setupLocator() async {
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => EasyLoadingService());
   locator.registerLazySingleton(() => ThemeService.getInstance());

@@ -25,7 +25,6 @@ class LoginViewDesktop extends StatelessWidget {
                     ) : CircularProgressIndicator(),
                   ],
                 ),
-                key: Key("login_card"),
               ),
             ),
           ),

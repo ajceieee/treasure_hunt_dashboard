@@ -10,19 +10,17 @@ class SplashScreenVD extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SplashScreenVM>.reactive(
       builder: (context, model, child) => Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
         body: Center(
-          child: AppCard1(
-            key: Key("card_splash"),
-            child: Container(
-              height: MediaQuery.of(context).size.height * .2,
-              width: MediaQuery.of(context).size.width * .2,
-              child: Center(
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/cs.png'),
-                    ),
-                  ),
+          child: Container(
+            height: MediaQuery.of(context).size.height * .2,
+            width: MediaQuery.of(context).size.width * .2,
+            child: Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(  "assets/cs.png")
+                  )
                 ),
               ),
             ),

@@ -34,8 +34,10 @@ class LoginVM extends BaseViewModel {
           UserModel? userDetails = await _service.getUserDetails(user.uid);
           if (userDetails != null)
             navigateTo(Routes.homeScreenV);
-          else
-            navigateTo(Routes.updateScreenV);
+          else {
+            await _authService.signOut();
+            navigateTo(Routes.loginView);
+          }
         } else
           _easyLoadingService.showToast(FAIL_MSG);
       } else
@@ -47,7 +49,7 @@ class LoginVM extends BaseViewModel {
   }
 
   void navigateTo(String route) {
-    _navigationService.clearStackAndShow(
+    _navigationService.clearTillFirstAndShow(
       route,
     );
   }

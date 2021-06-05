@@ -10,7 +10,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class SplashScreenVM extends FutureViewModel<bool> {
-  // service class locators
   final NavigationService _navigationService = locator<NavigationService>();
   final EasyLoadingService _easyLoadingService = locator<EasyLoadingService>();
   final FirebaseAuthService _authService = locator<FirebaseAuthService>();
@@ -39,8 +38,10 @@ class SplashScreenVM extends FutureViewModel<bool> {
             await _service.getUserDetails(_authService.currentUser?.uid);
         if (user != null)
           navigateTo(Routes.homeScreenV);
-        else
-          navigateTo(Routes.updateScreenV);
+        else {
+          await _authService.signOut();
+          navigateTo(Routes.loginView);
+        }
       } catch (e) {
         _easyLoadingService.showToast(ERROR_RETRY);
       }
@@ -50,7 +51,7 @@ class SplashScreenVM extends FutureViewModel<bool> {
   }
 
   void navigateTo(String route) {
-    _navigationService.clearStackAndShow(
+    _navigationService.clearTillFirstAndShow(
       route,
     );
   }

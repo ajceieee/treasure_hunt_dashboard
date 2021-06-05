@@ -100,10 +100,10 @@ class ApiService {
         print(response.data);
         return response.data;
       case 400:
-        throw BadRequestException(response.data.toString());
+        throw BadRequestException(response.data?.toString());
       case 401:
       case 403:
-        throw UnauthorisedException(response.data.toString());
+        throw UnauthorisedException(response.data?.toString());
       case 500:
       default:
         throw FetchDataException(

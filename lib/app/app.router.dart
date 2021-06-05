@@ -7,12 +7,12 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:flutter_boiler_plate/ui/views/home/home_vd.dart';
 import 'package:stacked/stacked.dart';
 
 import '../ui/views/home/home_v.dart';
 import '../ui/views/login/login_v.dart';
 import '../ui/views/splash/splash_v.dart';
-import '../ui/views/update/update_v.dart';
 
 class Routes {
   static const String splashScreenV = '/';
@@ -32,7 +32,7 @@ class StackedRouter extends RouterBase {
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
     RouteDef(Routes.splashScreenV, page: SplashScreenV),
-    RouteDef(Routes.updateScreenV, page: UpdateScreenV),
+
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.homeScreenV, page: HomeScreenV),
   ];
@@ -45,12 +45,7 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
-    UpdateScreenV: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => const UpdateScreenV(),
-        settings: data,
-      );
-    },
+
     LoginView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => LoginView(),

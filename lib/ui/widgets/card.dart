@@ -5,7 +5,7 @@ import 'package:flutter_boiler_plate/ui/media/color.dart';
 class AppCard1 extends StatelessWidget {
   final Widget child;
 
-  AppCard1({required Key key, required this.child}) : super(key: key);
+  AppCard1({required this.child});
 
   @override
   Widget build(BuildContext context) {

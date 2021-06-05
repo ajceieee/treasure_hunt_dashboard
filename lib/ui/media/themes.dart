@@ -4,8 +4,10 @@ class AppTheme {
   // dark theme data
   static final ThemeData _darkTheme = ThemeData(
     brightness: Brightness.dark,
-    backgroundColor: Colors.blue[700],
-    accentColor: Colors.grey[200],
+    backgroundColor: Color(0xFF212332),
+    primaryColor: Color(0xFF2697FF),
+    accentColor: Color(0xFF2A2D3E),
+    fontFamily: "Poppins"
   );
 
   ThemeData get darkTheme => _darkTheme;
@@ -16,6 +18,8 @@ class AppTheme {
     backgroundColor: Colors.blue[300],
     accentColor: Colors.grey[200],
     primaryColor: Colors.white,
+    fontFamily: "Poppins",
+
   );
 
   ThemeData get lightTheme => _lightTheme;
