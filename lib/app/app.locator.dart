@@ -23,6 +23,8 @@ final locator = GetIt.instance;
 
 Future setupLocator(
     {String? environment, EnvironmentFilter? environmentFilter}) async {
+
+
 // Register dependencies
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => EasyLoadingService());

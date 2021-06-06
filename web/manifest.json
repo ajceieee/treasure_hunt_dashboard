@@ -1,11 +1,11 @@
 {
-    "name": "treasure_hunt",
-    "short_name": "treasure_hunt",
+    "name": "QuaRunTime 2.0",
+    "short_name": "QuaRunTime 2.0",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "QuaRunTime 2.0",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
