@@ -33,7 +33,7 @@ class SimpleLogPrinter extends LogPrinter {
 
     var methodNameSection =
         printCallingFunctionName && methodName != null ? ' | $methodName ' : '';
-    var stackLog = event.stackTrace?.toString();
+    var stackLog = event.stackTrace.toString();
     var output =
         '$emoji $className$methodNameSection - ${event.message}${printCallStack ? '\nSTACKTRACE:\n$stackLog' : ''}';
 
@@ -76,33 +76,31 @@ class SimpleLogPrinter extends LogPrinter {
 
 final stackTraceRegex = RegExp(r'#[0-9]+[\s]+(.+) \(([^\s]+)\)');
 
-List<String>? _formatStackTrace(StackTrace? stackTrace, int methodCount) {
-  if (stackTrace != null) {
-    var lines = stackTrace.toString().split('\n');
+List<String>? _formatStackTrace(StackTrace stackTrace, int methodCount) {
+  var lines = stackTrace.toString().split('\n');
 
-    var formatted = <String>[];
-    var count = 0;
-    for (var line in lines) {
-      var match = stackTraceRegex.matchAsPrefix(line);
-      if (match != null) {
-        if (match.group(2)!.startsWith('package:logger')) {
-          continue;
-        }
-        var newLine = ("${match.group(1)}");
-        formatted.add(newLine.replaceAll('<anonymous closure>', '()'));
-        if (++count == methodCount) {
-          break;
-        }
-      } else {
-        formatted.add(line);
+  var formatted = <String>[];
+  var count = 0;
+  for (var line in lines) {
+    var match = stackTraceRegex.matchAsPrefix(line);
+    if (match != null) {
+      if (match.group(2)!.startsWith('package:logger')) {
+        continue;
       }
-    }
-
-    if (formatted.isEmpty) {
-      return null;
+      var newLine = ("${match.group(1)}");
+      formatted.add(newLine.replaceAll('<anonymous closure>', '()'));
+      if (++count == methodCount) {
+        break;
+      }
     } else {
-      return formatted;
+      formatted.add(line);
     }
+  }
+
+  if (formatted.isEmpty) {
+    return null;
+  } else {
+    return formatted;
   }
 }
 

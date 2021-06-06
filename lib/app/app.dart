@@ -4,7 +4,7 @@ import 'package:flutter_boiler_plate/services/network/api_service.dart';
 import 'package:flutter_boiler_plate/services/network/api_services/user_service.dart';
 import 'package:flutter_boiler_plate/services/third_party/easyloading/easyloading.dart';
 import 'package:flutter_boiler_plate/services/user_service/user_service.dart';
-import 'package:flutter_boiler_plate/ui/views/home/home_v.dart';
+import 'package:flutter_boiler_plate/ui/views/dashboard/dashboard_vd.dart';
 import 'package:flutter_boiler_plate/ui/views/home/home_vd.dart';
 import 'package:flutter_boiler_plate/ui/views/login/login_v.dart';
 import 'package:flutter_boiler_plate/ui/views/splash/splash_v.dart';
@@ -17,7 +17,8 @@ import 'package:stacked_themes/stacked_themes.dart';
   routes: [
     MaterialRoute(page: SplashScreenV, initial: true),
     MaterialRoute(page: LoginView),
-    MaterialRoute(page: HomeScreenV)
+    MaterialRoute(page: HomeScreenV),
+    MaterialRoute(page: DashBoard),
   ],
   dependencies: [
     // lazy-singletons
