@@ -6,7 +6,6 @@ import 'package:flutter_boiler_plate/models/all_user.dart';
 import 'package:flutter_boiler_plate/services/auth/firebase_auth.dart';
 import 'package:flutter_boiler_plate/services/network/api_services/user_service.dart';
 import 'package:flutter_boiler_plate/services/third_party/easyloading/easyloading.dart';
-import 'package:flutter_boiler_plate/services/user_service/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

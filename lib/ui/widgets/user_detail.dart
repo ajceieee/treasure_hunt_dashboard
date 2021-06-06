@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler_plate/ui/responsive.dart';
 import 'package:flutter_boiler_plate/ui/views/home/home_vm.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
@@ -12,7 +11,7 @@ class UsersDetail extends ViewModelWidget<HomeScreenVM> {
   @override
   Widget build(BuildContext context, HomeScreenVM model) {
     final Size _size = MediaQuery.of(context).size;
-    return  Column(
+    return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,16 +26,16 @@ class UsersDetail extends ViewModelWidget<HomeScreenVM> {
           ],
         ),
         SizedBox(height: 16.0),
-        Responsive(
-          mobile: UserCardGridView(
-            crossAxisCount: _size.width < 650 ? 2 : 4,
-            childAspectRatio: _size.width < 650 ? 1.3 : 1,
-          ),
-          tablet: UserCardGridView(),
-          desktop: UserCardGridView(
-            childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
-          ),
-        ),
+        // Responsive(
+        //   mobile: UserCardGridView(
+        //     crossAxisCount: _size.width < 650 ? 2 : 4,
+        //     childAspectRatio: _size.width < 650 ? 1.3 : 1,
+        //   ),
+        //   tablet: UserCardGridView(),
+        //   desktop: UserCardGridView(
+        //     childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
+        //   ),
+        // ),
       ],
     );
   }
@@ -88,7 +87,7 @@ List demoMyFiles = [
   CloudStorageInfo(
     title: "Total PLayers",
     numOfFiles: 1328,
-    svgSrc: "assets/icons/Documents.svg",
+    svgSrc: "icons/Documents.svg",
     totalStorage: "1.9GB",
     color: Color(0xFF212332),
     percentage: 35,
@@ -146,13 +145,15 @@ class UserInfoCard extends ViewModelWidget<HomeScreenVM> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-             model.userLoading ? Container() : Text(
-                "${model.userDetails!.length} players",
-                style: Theme.of(context)
-                    .textTheme
-                    .caption!
-                    .copyWith(color: Colors.white70),
-              ),
+              model.userLoading
+                  ? Container()
+                  : Text(
+                      "${model.userDetails!.length} players",
+                      style: Theme.of(context)
+                          .textTheme
+                          .caption!
+                          .copyWith(color: Colors.white70),
+                    ),
             ],
           )
         ],

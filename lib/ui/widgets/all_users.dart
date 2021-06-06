@@ -59,24 +59,28 @@ class AllUsers extends ViewModelWidget<HomeScreenVM> {
                         )
                       : Container(
                           width: double.infinity,
-                          child: DataTable(
-                            horizontalMargin: 0,
-                            columnSpacing: 16.0,
-                            columns: [
-                              DataColumn(
-                                label: Text("Name"),
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: DataTable(
+                              horizontalMargin: 0,
+                              columnSpacing: 16.0,
+                              columns: [
+                                DataColumn(
+                                  label: Text("Name"),
+                                ),
+                                DataColumn(
+                                  label: Text("Level"),
+                                ),
+                              ],
+                              rows: List.generate(
+                                model.searchList!.length,
+                                (index) => userDetailsRow(
+                                    name: model.searchList![index]!.fullName,
+                                    level: model
+                                        .searchList![index]!.highestLevelPlayed
+                                        .toString(),
+                                    context: context),
                               ),
-                              DataColumn(
-                                label: Text("Level"),
-                              ),
-                            ],
-                            rows: List.generate(
-                              model.searchList!.length,
-                              (index) => userDetailsRow(
-                                  name: model.searchList![index]!.fullName,
-                                  level: model
-                                      .searchList![index]!.highestLevelPlayed.toString(),
-                                  context: context),
                             ),
                           ),
                         ),
@@ -86,9 +90,13 @@ class AllUsers extends ViewModelWidget<HomeScreenVM> {
   }
 }
 
-DataRow userDetailsRow({String? name, String? date, String? level, context}) {
+DataRow userDetailsRow(
+    {String? name, String? date, String? level, String? total, context}) {
   return DataRow(
     cells: [
+      DataCell(
+        Text("$level "),
+      ),
       DataCell(
         Row(
           children: [
@@ -116,7 +124,9 @@ DataRow userDetailsRow({String? name, String? date, String? level, context}) {
           ],
         ),
       ),
-      DataCell(Text("$level ")),
+      DataCell(
+        Text("$total "),
+      ),
     ],
   );
 }
