@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boiler_plate/constants/strings.dart';
 import 'package:flutter_boiler_plate/ui/views/splash/splash_vm.dart';
 import 'package:flutter_boiler_plate/ui/widgets/card.dart';
 import 'package:stacked/stacked.dart';
@@ -13,14 +14,13 @@ class SplashScreenVD extends StatelessWidget {
         backgroundColor: Theme.of(context).backgroundColor,
         body: Center(
           child: Container(
-            height: MediaQuery.of(context).size.height * .2,
-            width: MediaQuery.of(context).size.width * .2,
             child: Center(
               child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(  "assets/cs.png")
-                  )
+                child: Text(
+                  APP_NAME,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),

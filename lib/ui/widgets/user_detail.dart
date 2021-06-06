@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler_plate/ui/media/themes.dart';
 import 'package:flutter_boiler_plate/ui/responsive.dart';
 import 'package:flutter_boiler_plate/ui/views/home/home_vm.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -87,7 +86,7 @@ class CloudStorageInfo {
 
 List demoMyFiles = [
   CloudStorageInfo(
-    title: "Total Users",
+    title: "Total PLayers",
     numOfFiles: 1328,
     svgSrc: "assets/icons/Documents.svg",
     totalStorage: "1.9GB",
@@ -148,7 +147,7 @@ class UserInfoCard extends ViewModelWidget<HomeScreenVM> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
              model.userLoading ? Container() : Text(
-                "${model.userDetails!.length} users",
+                "${model.userDetails!.length} players",
                 style: Theme.of(context)
                     .textTheme
                     .caption!

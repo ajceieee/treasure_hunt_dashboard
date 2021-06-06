@@ -4,15 +4,15 @@ import 'package:flutter_boiler_plate/ui/media/color.dart';
 
 class AppCard1 extends StatelessWidget {
   final Widget child;
-
-  AppCard1({required this.child});
+  final Color? color;
+  AppCard1({required this.child, this.color});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: color ?? Colors.white,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String? text;
@@ -8,9 +9,10 @@ class ButtonWidget extends StatelessWidget {
   final VoidCallback? onPressed;
   final Color? textColor;
   final double? borderSide;
-
+  final bool? showIcon;
   FontWeight? fontWeight;
   ButtonWidget({
+    this.showIcon,
     this.textColor,
     this.borderSide,
     this.text,
@@ -37,14 +39,27 @@ class ButtonWidget extends StatelessWidget {
       onPressed: onPressed,
       child: Padding(
         padding: EdgeInsets.all(padding ?? 8.0),
-        child: Text(
-          text ?? "",
-          style: TextStyle(
-            fontFamily: "Poppins-Regular",
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: textColor ?? Colors.white,
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            showIcon!
+                ? Image(
+                    image: AssetImage("assets/google.png"),
+                    width: 20,
+                    height: 20,
+                    color: Theme.of(context).primaryColor,
+                  )
+                : SizedBox(),
+            Text(
+              text ?? "",
+              style: TextStyle(
+                fontFamily: "Poppins-Regular",
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: textColor ?? Colors.white,
+              ),
+            ),
+          ],
         ),
       ),
     );

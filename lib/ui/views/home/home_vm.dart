@@ -85,21 +85,26 @@ class HomeScreenVM extends FutureViewModel<bool> {
     bool isFetched = false;
     try {
       AllUser? userDetails = await _userApiService.getAllUsers();
-      if (userDetails?.status != 200)
-        isFetched = false;
-      else {
-        if (userDetails?.data != null) {
-          if (userDetails!.data!.isNotEmpty) {
-            setUsersData = userDetails.data!;
-            isFetched = true;
+      if (userDetails != null) {
+        if (userDetails.status != 200)
+          isFetched = false;
+        else {
+          if (userDetails.data != null) {
+            if (userDetails.data!.isNotEmpty) {
+              setUsersData = userDetails.data!;
+              isFetched = true;
+            } else {
+              setUsersData = [];
+              isFetched = false;
+            }
           } else {
             setUsersData = [];
             isFetched = false;
           }
-        } else {
-          setUsersData = [];
-          isFetched = false;
         }
+      } else {
+        setUsersData = [];
+        isFetched = false;
       }
     } catch (e) {
       isFetched = false;
