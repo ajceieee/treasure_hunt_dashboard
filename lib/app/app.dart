@@ -7,6 +7,7 @@ import 'package:flutter_boiler_plate/services/user_service/user_service.dart';
 import 'package:flutter_boiler_plate/ui/views/dashboard/dashboard_vd.dart';
 import 'package:flutter_boiler_plate/ui/views/home/home_vd.dart';
 import 'package:flutter_boiler_plate/ui/views/login/login_v.dart';
+import 'package:flutter_boiler_plate/ui/views/main_spalsh/main_splash.dart';
 import 'package:flutter_boiler_plate/ui/views/splash/splash_v.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -15,10 +16,11 @@ import 'package:stacked_themes/stacked_themes.dart';
 @StackedApp(
   logger: StackedLogger(),
   routes: [
-    MaterialRoute(page: SplashScreenV, initial: true),
+    MaterialRoute(page: SplashScreenV),
     MaterialRoute(page: LoginView),
     MaterialRoute(page: HomeScreenV),
     MaterialRoute(page: DashBoard),
+    MaterialRoute(page: MainSplashScreen, initial: true)
   ],
   dependencies: [
     // lazy-singletons

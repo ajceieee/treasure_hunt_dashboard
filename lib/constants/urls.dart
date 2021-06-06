@@ -9,3 +9,4 @@ const String BASE_URL_PROD = 'http://www.arkroot.com/';
 // Routes
 const String USER_POST = 'users';
 const String USER_GET = 'users';
+const String LEADER_BOARD = "leaderboard";

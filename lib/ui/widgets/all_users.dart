@@ -75,7 +75,7 @@ class AllUsers extends ViewModelWidget<HomeScreenVM> {
                               (index) => userDetailsRow(
                                   name: model.searchList![index]!.fullName,
                                   level: model
-                                      .searchList![index]!.highestLevelPlayed,
+                                      .searchList![index]!.highestLevelPlayed.toString(),
                                   context: context),
                             ),
                           ),
@@ -86,7 +86,7 @@ class AllUsers extends ViewModelWidget<HomeScreenVM> {
   }
 }
 
-DataRow userDetailsRow({String? name, String? date, int? level, context}) {
+DataRow userDetailsRow({String? name, String? date, String? level, context}) {
   return DataRow(
     cells: [
       DataCell(

@@ -5,7 +5,7 @@ class AppTheme {
   static final ThemeData _darkTheme = ThemeData(
     brightness: Brightness.dark,
     backgroundColor: Color(0xFF212332),
-    primaryColor: Color(0xFF2697FF),
+    primaryColor: Color(0xffF7A302),
     accentColor: Color(0xFF2A2D3E),
     fontFamily: "Poppins"
   );

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter_boiler_plate/app/app.locator.dart';
 import 'package:flutter_boiler_plate/constants/urls.dart';
 import 'package:flutter_boiler_plate/models/all_user.dart';
+import 'package:flutter_boiler_plate/models/quauntime_player.dart';
 import 'package:flutter_boiler_plate/models/user_model.dart';
 import 'package:flutter_boiler_plate/services/network/api_service.dart';
 
@@ -12,6 +13,9 @@ abstract class UserSer {
   Future<UserModel?>? getUserDetails(String uuId);
 
   Future<AllUser?>? getAllUsers();
+
+  Future<QuarauntimePlayer?>? getCommonLeaderBoard();
+
 }
 
 class UserApiService extends UserSer {
@@ -54,6 +58,20 @@ class UserApiService extends UserSer {
       final response = await _apiService.get(USER_GET);
       if (response['message'] == "OK")
         return AllUser.fromJson(response);
+      else
+        return null;
+    } catch (e) {
+      log("Error: Failed to get User Data \n $e");
+      return null;
+    }
+  }
+
+  @override
+  Future<QuarauntimePlayer?>? getCommonLeaderBoard() async {
+    try {
+      final response = await _apiService.getWithoutAuth(LEADER_BOARD);
+      if (response['message'] == "Ok")
+        return QuarauntimePlayer.fromJson(response);
       else
         return null;
     } catch (e) {

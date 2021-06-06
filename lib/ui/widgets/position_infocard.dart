@@ -6,11 +6,11 @@ class PositionInfoCard extends StatelessWidget {
     Key? key,
     required this.title,
     required this.svgSrc,
-    required this.amountOfFiles,
+    required this.rank,
     required this.numOfFiles,
   }) : super(key: key);
 
-  final String title, svgSrc, amountOfFiles;
+  final String title, svgSrc, rank;
   final int numOfFiles;
 
   @override
@@ -42,18 +42,18 @@ class PositionInfoCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Text(
-                    "$numOfFiles Files",
-                    style: Theme.of(context)
-                        .textTheme
-                        .caption!
-                        .copyWith(color: Colors.white70),
-                  ),
+                  // Text(
+                  //   "$numOfFiles Files",
+                  //   style: Theme.of(context)
+                  //       .textTheme
+                  //       .caption!
+                  //       .copyWith(color: Colors.white70),
+                  // ),
                 ],
               ),
             ),
           ),
-          Text(amountOfFiles)
+          Text(rank)
         ],
       ),
     );

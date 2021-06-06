@@ -7,7 +7,6 @@ import 'package:flutter_boiler_plate/app/exceptions/fetch_data_exception.dart';
 import 'package:flutter_boiler_plate/app/exceptions/unauthorised_exception.dart';
 import 'package:flutter_boiler_plate/services/auth/firebase_auth.dart';
 
-
 class ApiService {
   static String baseUrl = "https://mighty-island-44038.herokuapp.com/";
 
@@ -23,6 +22,20 @@ class ApiService {
 
     dio.options.connectTimeout = 20000;
     dio.options.receiveTimeout = 200000;
+  }
+
+  Future<dynamic> getWithoutAuth(String url) async {
+    var responseJson;
+    try {
+      print("Url===>$url");
+      final response = await dio.get(
+        baseUrl + url,
+      );
+      responseJson = _returnResponse(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
   }
 
   Future<dynamic> get(String url) async {
@@ -66,10 +79,14 @@ class ApiService {
     return responseJson;
   }
 
-  Future<dynamic> fileUpload(String url, String filePath, String fileName,
-      {Map<String, dynamic>? data,
-        String fileKey = "file",
-        required Function(int sent, int total) onProgress,}) async {
+  Future<dynamic> fileUpload(
+    String url,
+    String filePath,
+    String fileName, {
+    Map<String, dynamic>? data,
+    String fileKey = "file",
+    required Function(int sent, int total) onProgress,
+  }) async {
     var responseJson;
     try {
       print("Request:${data?.toString()}");
@@ -77,7 +94,7 @@ class ApiService {
         data = Map();
       }
       data[fileKey] =
-      await MultipartFile.fromFile(filePath, filename: fileName);
+          await MultipartFile.fromFile(filePath, filename: fileName);
 
       FormData formData = FormData.fromMap(data);
 
