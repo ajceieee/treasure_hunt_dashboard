@@ -13,7 +13,7 @@ class DetailsDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double dialogHeight = MediaQuery.of(context).size.height / 2;
+    double dialogHeight = MediaQuery.of(context).size.height * .8;
     double dialogWidth = MediaQuery.of(context).size.width / 2;
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -40,7 +40,7 @@ class DetailsDialog extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: dialogWidth / 5),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   CircleAvatar(
@@ -90,6 +90,24 @@ class DetailsDialog extends StatelessWidget {
                   DetailRow(
                     name: "Treasure Hunt",
                     value: (request.customData as Result).treasureHunt,
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Divider(
+                    height: 3,
+                    color: Theme.of(context).accentColor,
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  DetailRow(
+                    name: "Bonus",
+                    value: (request.customData as Result).bonus,
+                  ),
+                  DetailRow(
+                    name: "Total Score",
+                    value: (request.customData as Result).totalScore,
                   ),
                 ],
               ),

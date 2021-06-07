@@ -22,7 +22,7 @@ class DashBoard extends StatelessWidget {
               APP_NAME,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Theme.of(context).primaryColor,
               ),
             ),
             backgroundColor: Theme.of(context).accentColor,
