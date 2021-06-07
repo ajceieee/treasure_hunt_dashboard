@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler_plate/app/app.locator.dart';
 import 'package:flutter_boiler_plate/ui/media/themes.dart';
+import 'package:flutter_boiler_plate/ui/widgets/dialog/set_up_dialog.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
@@ -17,6 +18,7 @@ void main() {
     await Firebase.initializeApp();
     await ThemeManager.initialise();
     await setupLocator();
+    setUpDialogUi();
     FlutterError.onError = (FlutterErrorDetails details) {
       FlutterError.dumpErrorToConsole(details);
     };

@@ -28,14 +28,14 @@ class DashBoard extends StatelessWidget {
             backgroundColor: Theme.of(context).accentColor,
             elevation: 5,
             actions: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Icon(
-                  Icons.menu,
-                  size: 30,
-                  color: Colors.white,
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(10.0),
+              //   child: Icon(
+              //     Icons.menu,
+              //     size: 30,
+              //     color: Colors.white,
+              //   ),
+              // ),
             ],
           ),
           body: RefreshIndicator(
@@ -195,7 +195,12 @@ class AllPlayers extends ViewModelWidget<DashboardViewModel> {
                                     rows: List.generate(
                                       model.searchList!.length,
                                       (index) => userDetailsRow(
-                                          onTap: () {},
+                                          onTap: () {
+                                            model.onDetailsTap(
+                                              playerDetails:
+                                              model.searchList![index],
+                                            );
+                                          },
                                           name: model.searchList![index]!.name,
                                           level: model.searchList![index]!.rank,
                                           total: model
@@ -221,7 +226,12 @@ class AllPlayers extends ViewModelWidget<DashboardViewModel> {
                                   rows: List.generate(
                                     model.searchList!.length,
                                     (index) => userDetailsRow(
-                                        onTap: () {},
+                                        onTap: () {
+                                          model.onDetailsTap(
+                                            playerDetails:
+                                                model.searchList![index],
+                                          );
+                                        },
                                         name: model.searchList![index]!.name,
                                         level: model.searchList![index]!.rank,
                                         total: model

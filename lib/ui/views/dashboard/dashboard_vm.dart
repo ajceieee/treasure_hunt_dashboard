@@ -3,6 +3,7 @@ import 'package:flutter_boiler_plate/app/app.locator.dart';
 import 'package:flutter_boiler_plate/models/quauntime_player.dart';
 import 'package:flutter_boiler_plate/services/network/api_services/user_service.dart';
 import 'package:flutter_boiler_plate/services/third_party/easyloading/easyloading.dart';
+import 'package:flutter_boiler_plate/ui/widgets/dialog/set_up_dialog.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -10,6 +11,7 @@ class DashboardViewModel extends FutureViewModel<bool> {
   final NavigationService _navigationService = locator<NavigationService>();
   final EasyLoadingService _easyLoadingService = locator<EasyLoadingService>();
   final UserApiService _userApiService = locator<UserApiService>();
+  final DialogService _dialogService = locator<DialogService>();
 
   bool _showPortal = false;
   List<Result?>? _quaruntimePlayers;
@@ -31,6 +33,20 @@ class DashboardViewModel extends FutureViewModel<bool> {
   set setUsersData(List<Result?>? quaruntimePlayers) {
     _quaruntimePlayers = quaruntimePlayers;
     notifyListeners();
+  }
+
+  void onDetailsTap({Result? playerDetails}) async {
+    DialogResponse? response = await _dialogService.showCustomDialog(
+      barrierDismissible: true,
+      variant: DialogType.details,
+      customData: playerDetails,
+    );
+
+    if (response != null) {
+      if (response.confirmed) {
+        print("confirmed");
+      }
+    }
   }
 
   void filterUsers(List<Result?>? usersList, {required bool initialLoad}) {
