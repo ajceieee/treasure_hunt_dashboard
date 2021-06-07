@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
             onGenerateRoute: StackedRouter().onGenerateRoute,
             builder: locator<EasyLoadingService>().initialize(
               builder: (BuildContext context, Widget? child) {
-                Widget error = Text('...rendering error...');
+                Widget error = Text('..');
                 if (child is Scaffold || child is Navigator)
                   error = Scaffold(body: Center(child: error));
                 ErrorWidget.builder = (FlutterErrorDetails errorDetails) {

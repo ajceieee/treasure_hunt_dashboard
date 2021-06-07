@@ -175,29 +175,60 @@ class AllPlayers extends ViewModelWidget<DashboardViewModel> {
                         )
                       : Container(
                           width: double.infinity,
-                          child: DataTable(
-                            horizontalMargin: 0,
-                            columnSpacing: 16.0,
-                            columns: [
-                              DataColumn(
-                                label: Text("Rank"),
-                              ),
-                              DataColumn(
-                                label: Text("Name"),
-                              ),
-                              DataColumn(
-                                label: Text("Score"),
-                              ),
-                            ],
-                            rows: List.generate(
-                              model.searchList!.length,
-                              (index) => userDetailsRow(
-                                  name: model.searchList![index]!.name,
-                                  level: model.searchList![index]!.rank,
-                                  total: model.searchList![index]!.totalScore,
-                                  context: context),
-                            ),
-                          ),
+                          child: Responsive.isMobile(context)
+                              ? FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: DataTable(
+                                    horizontalMargin: 0,
+                                    columnSpacing: 16.0,
+                                    columns: [
+                                      DataColumn(
+                                        label: Text("Rank"),
+                                      ),
+                                      DataColumn(
+                                        label: Text("Name"),
+                                      ),
+                                      DataColumn(
+                                        label: Text("Score"),
+                                      ),
+                                    ],
+                                    rows: List.generate(
+                                      model.searchList!.length,
+                                      (index) => userDetailsRow(
+                                          onTap: () {},
+                                          name: model.searchList![index]!.name,
+                                          level: model.searchList![index]!.rank,
+                                          total: model
+                                              .searchList![index]!.totalScore,
+                                          context: context),
+                                    ),
+                                  ),
+                                )
+                              : DataTable(
+                                  horizontalMargin: 0,
+                                  columnSpacing: 16.0,
+                                  columns: [
+                                    DataColumn(
+                                      label: Text("Rank"),
+                                    ),
+                                    DataColumn(
+                                      label: Text("Name"),
+                                    ),
+                                    DataColumn(
+                                      label: Text("Score"),
+                                    ),
+                                  ],
+                                  rows: List.generate(
+                                    model.searchList!.length,
+                                    (index) => userDetailsRow(
+                                        onTap: () {},
+                                        name: model.searchList![index]!.name,
+                                        level: model.searchList![index]!.rank,
+                                        total: model
+                                            .searchList![index]!.totalScore,
+                                        context: context),
+                                  ),
+                                ),
                         ),
         ],
       ),
