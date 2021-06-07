@@ -63,7 +63,7 @@ class AllUsers extends ViewModelWidget<HomeScreenVM> {
                             onTap: () {},
                             child: DataTable(
                               horizontalMargin: 0,
-                              columnSpacing: 16.0,
+                              columnSpacing: 3.0,
                               columns: [
                                 DataColumn(
                                   label: Text("Name"),
@@ -75,11 +75,13 @@ class AllUsers extends ViewModelWidget<HomeScreenVM> {
                               rows: List.generate(
                                 model.searchList!.length,
                                 (index) => userDetailsRow(
+                                    onTap: () {},
                                     name: model.searchList![index]!.fullName,
                                     level: model
                                         .searchList![index]!.highestLevelPlayed
                                         .toString(),
-                                    context: context),
+                                    context: context,
+                                    index: index),
                               ),
                             ),
                           ),
@@ -90,8 +92,15 @@ class AllUsers extends ViewModelWidget<HomeScreenVM> {
   }
 }
 
-DataRow userDetailsRow(
-    {String? name, String? date, String? level, String? total, context}) {
+DataRow userDetailsRow({
+  String? name,
+  String? date,
+  String? level,
+  String? total,
+  context,
+  int? index,
+  required Function onTap,
+}) {
   return DataRow(
     cells: [
       DataCell(
@@ -123,6 +132,7 @@ DataRow userDetailsRow(
               ),
           ],
         ),
+        onTap: () => onTap.call(),
       ),
       DataCell(
         Text("$total "),
