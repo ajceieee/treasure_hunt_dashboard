@@ -37,6 +37,10 @@ import 'package:stacked_themes/stacked_themes.dart';
       classType: UserService,
     ),
 
+    LazySingleton(
+      classType: DialogService,
+    ),
+
     // Factory
     Factory(
       classType: UserApiService,
