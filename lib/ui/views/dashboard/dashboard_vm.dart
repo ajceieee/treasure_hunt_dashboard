@@ -8,8 +8,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class DashboardViewModel extends FutureViewModel<bool> {
-  final NavigationService _navigationService = locator<NavigationService>();
-  final EasyLoadingService _easyLoadingService = locator<EasyLoadingService>();
   final UserApiService _userApiService = locator<UserApiService>();
   final DialogService _dialogService = locator<DialogService>();
 
