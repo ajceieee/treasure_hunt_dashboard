@@ -16,15 +16,6 @@ class AllUser {
     }
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }
 
 class Data {
@@ -33,7 +24,8 @@ class Data {
   String? uId;
   String? fullName;
   String? email;
-  String? uCode;
+  List<Answers?>? answers;
+  String? lastAnsweredTime;
 
   Data(
       {this.highestLevelPlayed,
@@ -41,7 +33,8 @@ class Data {
         this.uId,
         this.fullName,
         this.email,
-        this.uCode});
+        this.answers,
+        this.lastAnsweredTime});
 
   Data.fromJson(Map<String, dynamic> json) {
     highestLevelPlayed = json['highestLevelPlayed'];
@@ -49,17 +42,39 @@ class Data {
     uId = json['uId'];
     fullName = json['fullName'];
     email = json['email'];
-    uCode = json['uCode'];
+    if (json['answers'] != null) {
+      answers = [];
+      json['answers'].forEach((v) {
+        answers!.add(new Answers.fromJson(v));
+      });
+    }
+    lastAnsweredTime = json['lastAnsweredTime'];
+  }
+
+}
+
+class Answers {
+  String? sId;
+  int? level;
+  String? answer;
+  String? time;
+
+  Answers({this.sId, this.level, this.answer, this.time});
+
+  Answers.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    level = json['level'];
+    answer = json['answer'];
+    time = json['time'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['highestLevelPlayed'] = this.highestLevelPlayed;
     data['_id'] = this.sId;
-    data['uId'] = this.uId;
-    data['fullName'] = this.fullName;
-    data['email'] = this.email;
-    data['uCode'] = this.uCode;
+    data['level'] = this.level;
+    data['answer'] = this.answer;
+    data['time'] = this.time;
     return data;
   }
 }
+

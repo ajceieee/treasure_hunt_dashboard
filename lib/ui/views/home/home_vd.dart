@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler_plate/constants/strings.dart';
+import 'package:flutter_boiler_plate/ui/views/home/top_players.dart';
 import 'package:flutter_boiler_plate/ui/widgets/all_users.dart';
-import 'package:flutter_boiler_plate/ui/widgets/user_detail.dart';
 import 'package:flutter_boiler_plate/ui/widgets/profile_card.dart';
 
-import 'package:flutter_boiler_plate/ui/widgets/position_user.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:stacked/stacked.dart';
 import '../../responsive.dart';
@@ -25,6 +24,7 @@ class HomeScreenV extends StatelessWidget {
             APP_NAME,
             style: TextStyle(
               fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
           ),
           backgroundColor: Theme.of(context).backgroundColor,
@@ -35,24 +35,42 @@ class HomeScreenV extends StatelessWidget {
         ),
         body: Center(
           child: RefreshIndicator(
-            onRefresh: ()async{
+            onRefresh: () async {
               model.initialise();
             },
             child: SingleChildScrollView(
               padding: EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  SizedBox(height: 16.0),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         flex: 5,
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            UsersDetail(),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "Leaderboard",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle1!
+                                    .copyWith(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            // PlayerDetails(),
                             SizedBox(height: 16.0),
-                            if (Responsive.isMobile(context)) UsersPosition(),
+                            if (Responsive.isMobile(context))
+                              Column(
+                                children: [
+                                  TopPlayers(),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
+                              ),
                             SizedBox(height: 16.0),
                             AllUsers(),
                           ],
@@ -62,10 +80,17 @@ class HomeScreenV extends StatelessWidget {
                       if (!Responsive.isMobile(context))
                         Expanded(
                           flex: 2,
-                          child: UsersPosition(),
+                          child: Column(
+                            children: [
+                              TopPlayers(),
+                              SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          ),
                         ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -117,6 +142,7 @@ class VerticalOption extends ViewModelWidget<HomeScreenVM> {
               model.isBusy
                   ? ImageIcon(
                       AssetImage("assets/User Icon.png"),
+                      color: Theme.of(context).primaryColor,
                     )
                   : CircleAvatar(
                       backgroundImage: NetworkImage(
@@ -128,6 +154,9 @@ class VerticalOption extends ViewModelWidget<HomeScreenVM> {
                 child: Center(
                   child: Text(
                     "${model.userName?.displayName ?? " "}",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -138,6 +167,9 @@ class VerticalOption extends ViewModelWidget<HomeScreenVM> {
                 onTap: model.logout,
                 child: Text(
                   "Logout",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               )
             ],

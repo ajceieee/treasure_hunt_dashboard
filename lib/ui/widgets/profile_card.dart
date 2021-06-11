@@ -10,7 +10,7 @@ class ProfileCard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
- final VoidCallback onTap;
+  final VoidCallback onTap;
   final String? name;
 
   @override
@@ -41,9 +41,17 @@ class ProfileCard extends StatelessWidget {
             if (!Responsive.isMobile(context))
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0 / 2),
-                child: Text(name ?? ""),
+                child: Text(
+                  name ?? "",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
-            Icon(Icons.keyboard_arrow_down),
+            Icon(
+              Icons.keyboard_arrow_down,
+              color: Colors.white,
+            ),
           ],
         ),
       ),

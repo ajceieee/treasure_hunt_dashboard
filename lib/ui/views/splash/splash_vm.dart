@@ -40,18 +40,18 @@ class SplashScreenVM extends FutureViewModel<bool> {
           navigateTo(Routes.homeScreenV);
         else {
           await _authService.signOut();
-          navigateTo(Routes.dashBoard);
+          navigateTo(Routes.loginView);
         }
       } catch (e) {
         _easyLoadingService.showToast(ERROR_RETRY);
       }
     } else
-      navigateTo(Routes.dashBoard);
+      navigateTo(Routes.loginView);
     super.onData(data);
   }
 
   void navigateTo(String route) {
-    _navigationService.clearTillFirstAndShow(
+    _navigationService.clearStackAndShow(
       route,
     );
   }

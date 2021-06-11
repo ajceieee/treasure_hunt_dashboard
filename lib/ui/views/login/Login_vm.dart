@@ -43,13 +43,13 @@ class LoginVM extends BaseViewModel {
       } else
         _easyLoadingService.showToast(FAIL_MSG);
     } catch (e, s) {
-      _easyLoadingService.showToast(FAIL_MSG);
+      _easyLoadingService.showToast(e.toString());
     }
     setSignInStatus(false);
   }
 
   void navigateTo(String route) {
-    _navigationService.clearTillFirstAndShow(
+    _navigationService.clearStackAndShow(
       route,
     );
   }

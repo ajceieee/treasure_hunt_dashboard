@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_boiler_plate/app/app.locator.dart';
 import 'package:flutter_boiler_plate/app/app.router.dart';
@@ -6,6 +7,8 @@ import 'package:flutter_boiler_plate/models/all_user.dart';
 import 'package:flutter_boiler_plate/services/auth/firebase_auth.dart';
 import 'package:flutter_boiler_plate/services/network/api_services/user_service.dart';
 import 'package:flutter_boiler_plate/services/third_party/easyloading/easyloading.dart';
+import 'package:flutter_boiler_plate/ui/widgets/dialog/set_up_dialog.dart';
+import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -14,6 +17,7 @@ class HomeScreenVM extends FutureViewModel<bool> {
   NavigationService _navigationService = locator<NavigationService>();
   EasyLoadingService _easyLoadingService = locator<EasyLoadingService>();
   UserApiService _userApiService = locator<UserApiService>();
+  final DialogService _dialogService = locator<DialogService>();
 
   User? _user;
   bool _showPortal = false;
@@ -21,6 +25,7 @@ class HomeScreenVM extends FutureViewModel<bool> {
   bool _usersLoading = true;
   List<Data?>? _searchList = [];
   String _errorString = "";
+  Map<int, List<Data>>? _groupList = {};
 
   User? get userName => _user;
   bool get getPortalState => _showPortal;
@@ -28,6 +33,12 @@ class HomeScreenVM extends FutureViewModel<bool> {
   bool get userLoading => _usersLoading;
   List<Data?>? get searchList => _searchList;
   String get errorString => _errorString;
+  Map<int, List<Data>>? get groupList => _groupList;
+
+  set setGroupList(Map<int, List<Data>>? data) {
+    _groupList = data;
+    notifyListeners();
+  }
 
   set setUserLoading(bool isLoading) {
     _usersLoading = isLoading;
@@ -54,6 +65,35 @@ class HomeScreenVM extends FutureViewModel<bool> {
       setPortalState = false;
     else
       setPortalState = true;
+  }
+
+  String? getFormatedDate(String? date) {
+    if (date == null) return "";
+    DateTime tempDate = new DateFormat("yyyy-MM-ddTHH:mm:ss").parse(date, true);
+    final dateNew = tempDate.toLocal();
+    final _format = DateFormat.jms();
+    return _format.format(dateNew);
+  }
+
+  DateTime? getDateTime(String? date) {
+    if (date == null) return null;
+    DateTime tempDate = new DateFormat("yyyy-MM-ddTHH:mm:ss").parse(date, true);
+    final dateNew = tempDate.toLocal();
+    return dateNew;
+  }
+
+  void onTap(Data details) async {
+    DialogResponse? response = await _dialogService.showCustomDialog(
+      barrierDismissible: true,
+      variant: DialogType.details,
+      customData: details,
+    );
+
+    if (response != null) {
+      if (response.confirmed) {
+        print("confirmed");
+      }
+    }
   }
 
   @override
@@ -90,7 +130,23 @@ class HomeScreenVM extends FutureViewModel<bool> {
         else {
           if (userDetails.data != null) {
             if (userDetails.data!.isNotEmpty) {
+              userDetails.data!.sort((a, b) {
+                if (a.lastAnsweredTime != null && b.lastAnsweredTime != null) {
+                  var firstTime = getDateTime(a.lastAnsweredTime);
+                  var secondTime = getDateTime(b.lastAnsweredTime);
+                  return firstTime!.compareTo(secondTime!);
+                }
+                return -1;
+              });
+              userDetails.data!.sort(
+                (a, b) =>
+                    b.highestLevelPlayed!.compareTo(a.highestLevelPlayed!),
+              );
               setUsersData = userDetails.data!;
+              Map<int, List<Data>> datas = groupBy(userDetails.data!, (user) {
+                return user.highestLevelPlayed!;
+              });
+              setGroupList = datas;
               isFetched = true;
             } else {
               setUsersData = [];
@@ -151,5 +207,11 @@ class HomeScreenVM extends FutureViewModel<bool> {
     } catch (e) {
       _easyLoadingService.showToast(FAILED_LOGOUT);
     }
+  }
+
+  @override
+  void onError(error) {
+    print("Home page View Model error ==> $error");
+    super.onError(error);
   }
 }

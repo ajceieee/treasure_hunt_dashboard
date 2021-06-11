@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boiler_plate/ui/views/dashboard/dashboard_vm.dart';
+import 'package:flutter_boiler_plate/ui/views/home/home_vm.dart';
 import 'package:flutter_boiler_plate/ui/widgets/position_infocard.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:stacked/stacked.dart';
 
-class TopPlayers extends ViewModelWidget<DashboardViewModel> {
+class TopPlayers extends ViewModelWidget<HomeScreenVM> {
   @override
-  Widget build(BuildContext context, DashboardViewModel model) {
+  Widget build(BuildContext context, HomeScreenVM model) {
     return Container(
       padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
@@ -17,7 +17,7 @@ class TopPlayers extends ViewModelWidget<DashboardViewModel> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Top Players",
+            "Players Level",
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -31,7 +31,7 @@ class TopPlayers extends ViewModelWidget<DashboardViewModel> {
                     color: Theme.of(context).primaryColor,
                   ),
                 )
-              : model.quaruntimePlayers == null
+              : model.groupList == null
                   ? Container(
                       width: double.infinity,
                       child: Center(
@@ -39,7 +39,7 @@ class TopPlayers extends ViewModelWidget<DashboardViewModel> {
                         "${model.errorString}",
                       )),
                     )
-                  : model.quaruntimePlayers!.isEmpty
+                  : model.groupList!.isEmpty
                       ? Container(
                           width: double.infinity,
                           child: Center(
@@ -47,18 +47,20 @@ class TopPlayers extends ViewModelWidget<DashboardViewModel> {
                             "${model.errorString}",
                           )),
                         )
-                      : ListView.builder(
+                      : ListView(
                           shrinkWrap: true,
-                          itemCount: 3,
-                          itemBuilder: (context, index) {
-                            return PositionInfoCard(
-                              svgSrc: "assets/User Icon.svg",
-                              title:
-                                  " ${model.quaruntimePlayers![index]!.name}",
-                              rank: " ${model.quaruntimePlayers![index]!.rank}",
-                              numOfFiles: 1328,
-                            );
-                          })
+                          children: [
+                            if (model.groupList != null)
+                              for (var k in model.groupList!.keys)
+                                PositionInfoCard(
+                                  svgSrc: "assets/User Icon.svg",
+                                  title: "Level " + k.toString(),
+                                  rank:
+                                      "${model.groupList![k] != null ? model.groupList![k]!.length : 0} players",
+                                  numOfFiles: 1328,
+                                ),
+                          ],
+                        )
         ],
       ),
     );

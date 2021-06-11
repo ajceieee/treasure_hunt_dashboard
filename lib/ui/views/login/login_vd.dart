@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boiler_plate/constants/strings.dart';
 import 'package:flutter_boiler_plate/ui/views/login/Login_vm.dart';
-import 'package:flutter_boiler_plate/ui/widgets/button_widget.dart';
-import 'package:flutter_boiler_plate/ui/widgets/card.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:stacked/stacked.dart';

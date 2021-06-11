@@ -113,9 +113,10 @@ class FirebaseAuthService extends AuthService {
       userCredential = await signInWithCredential(credential);
     } on FirebaseAuthException catch (e, s) {
       log.e('FirebaseAuthException', e, s);
-
+      print(e);
       updateAuthException(e);
     } catch (e, s) {
+      print(e);
       log.e('Error', e, s);
       updateError(e);
     }

@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "quaruntime"
+  },
+  "targets": {
+    "quaruntime": {
+      "hosting": {
+        "dashboard": [
+          "treasurehunt-dashboard"
+        ]
+      }
+    }
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boiler_plate/models/all_user.dart';
 import 'package:flutter_boiler_plate/models/quauntime_player.dart';
+import 'package:intl/intl.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class DetailsDialog extends StatelessWidget {
@@ -13,6 +15,7 @@ class DetailsDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print((request.customData as Data).answers);
     double dialogHeight = MediaQuery.of(context).size.height * .8;
     double dialogWidth = MediaQuery.of(context).size.width / 2;
     return Dialog(
@@ -57,58 +60,39 @@ class DetailsDialog extends StatelessWidget {
                   SizedBox(
                     height: 10.0,
                   ),
-                  Text((request.customData as Result).name ?? ""),
+                  Text((request.customData as Data).fullName ?? ""),
                   SizedBox(
                     height: 10.0,
                   ),
                   Chip(
                     label: Text(
-                      "Rank ${(request.customData as Result).rank ?? ""}",
+                      "Level ${(request.customData as Data).highestLevelPlayed ?? ""}",
                     ),
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
-                  DetailRow(
-                    name: "Quiz",
-                    value: (request.customData as Result).quiz,
-                  ),
-                  DetailRow(
-                    name: "Word Search",
-                    value: (request.customData as Result).wordSearch,
-                  ),
-                  DetailRow(
-                    name: "Cryptography",
-                    value: (request.customData as Result).cryptography,
-                  ),
-                  DetailRow(
-                    name: "Crossword",
-                    value: (request.customData as Result).crossword,
-                  ),
-                  DetailRow(
-                    name: "Aptitude Test",
-                    value: (request.customData as Result).aptitudeTest,
-                  ),
-                  DetailRow(
-                    name: "Treasure Hunt",
-                    value: (request.customData as Result).treasureHunt,
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Divider(
-                    height: 3,
-                    color: Theme.of(context).accentColor,
-                  ),
                   SizedBox(
                     height: 10.0,
                   ),
                   DetailRow(
-                    name: "Bonus",
-                    value: (request.customData as Result).bonus,
+                    name: "Email",
+                    value: "${(request.customData as Data).email ?? ""}",
                   ),
-                  DetailRow(
-                    name: "Total Score",
-                    value: (request.customData as Result).totalScore,
-                  ),
+                  if ((request.customData as Data).answers != null)
+                    ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: (request.customData as Data).answers!.length,
+                        itemBuilder: (context, index) {
+                          return DetailRow(
+                            name: getFormatedDate((request.customData as Data)
+                                    .answers![index]
+                                    ?.time) ??
+                                "",
+                            value: (request.customData as Data)
+                                    .answers![index]!
+                                    .answer ??
+                                "",
+                          );
+                        })
                 ],
               ),
             ),
@@ -117,23 +101,38 @@ class DetailsDialog extends StatelessWidget {
       ),
     );
   }
+
+  String? getFormatedDate(String? date) {
+    if (date == null) return "";
+    DateTime tempDate = new DateFormat("yyyy-MM-ddTHH:mm:ss").parse(date, true);
+    final dateNew = tempDate.toLocal();
+    final _format = DateFormat.jms();
+    return _format.format(dateNew);
+  }
 }
 
 class DetailRow extends StatelessWidget {
   String? name;
   String? value;
-  DetailRow({this.value, this.name});
+  DetailRow({
+    this.value,
+    this.name,
+  });
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          name ?? "",
-          textAlign: TextAlign.left,
+        Expanded(
+          child: Text(
+            name ?? "",
+            textAlign: TextAlign.left,
+          ),
         ),
-        Text(
-          value ?? "0",
+        Expanded(
+          child: Text(
+            value ?? "0",
+          ),
         ),
       ],
     );

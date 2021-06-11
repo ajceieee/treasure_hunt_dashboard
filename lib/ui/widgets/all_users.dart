@@ -54,38 +54,85 @@ class AllUsers extends ViewModelWidget<HomeScreenVM> {
                       ? Container(
                           width: double.infinity,
                           child: Center(
-                              child: Text(
-                                  "Something went wrong please try again")),
-                        )
-                      : Container(
-                          width: double.infinity,
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: DataTable(
-                              horizontalMargin: 0,
-                              columnSpacing: 3.0,
-                              columns: [
-                                DataColumn(
-                                  label: Text("Name"),
-                                ),
-                                DataColumn(
-                                  label: Text("Level"),
-                                ),
-                              ],
-                              rows: List.generate(
-                                model.searchList!.length,
-                                (index) => userDetailsRow(
-                                    onTap: () {},
-                                    name: model.searchList![index]!.fullName,
-                                    level: model
-                                        .searchList![index]!.highestLevelPlayed
-                                        .toString(),
-                                    context: context,
-                                    index: index),
-                              ),
+                            child: Text(
+                              "Something went wrong please try again",
                             ),
                           ),
-                        ),
+                        )
+                      : Responsive.isMobile(context)
+                          ? Container(
+                              width: double.infinity,
+                              child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: DataTable(
+                                  horizontalMargin: 0,
+                                  columnSpacing: 3.0,
+                                  columns: [
+                                    DataColumn(
+                                      label: Text("Level"),
+                                    ),
+                                    DataColumn(
+                                      label: Text("Name"),
+                                    ),
+                                    DataColumn(
+                                      label: Text("Time"),
+                                    ),
+                                  ],
+                                  rows: List.generate(
+                                    model.searchList!.length,
+                                    (index) => userDetailsRow(
+                                        model: model,
+                                        onTap: () {
+                                          model
+                                              .onTap(model.searchList![index]!);
+                                        },
+                                        date: model.searchList![index]
+                                            ?.lastAnsweredTime,
+                                        name:
+                                            model.searchList![index]!.fullName,
+                                        level: model.searchList![index]!
+                                            .highestLevelPlayed
+                                            .toString(),
+                                        context: context,
+                                        index: index),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              width: double.infinity,
+                              child: DataTable(
+                                horizontalMargin: 0,
+                                columnSpacing: 3.0,
+                                columns: [
+                                  DataColumn(
+                                    label: Text("Level"),
+                                  ),
+                                  DataColumn(
+                                    label: Text("Name"),
+                                  ),
+                                  DataColumn(
+                                    label: Text("Time"),
+                                  ),
+                                ],
+                                rows: List.generate(
+                                  model.searchList!.length,
+                                  (index) => userDetailsRow(
+                                      model: model,
+                                      onTap: () {
+                                        model.onTap(model.searchList![index]!);
+                                      },
+                                      date: model
+                                          .searchList![index]?.lastAnsweredTime,
+                                      name: model.searchList![index]!.fullName,
+                                      level: model.searchList![index]!
+                                          .highestLevelPlayed
+                                          .toString(),
+                                      context: context,
+                                      index: index),
+                                ),
+                              ),
+                            ),
         ],
       ),
     );
@@ -96,9 +143,10 @@ DataRow userDetailsRow({
   String? name,
   String? date,
   String? level,
-  String? total,
+  String? time,
   context,
   int? index,
+  HomeScreenVM? model,
   required Function onTap,
 }) {
   return DataRow(
@@ -135,7 +183,7 @@ DataRow userDetailsRow({
         onTap: () => onTap.call(),
       ),
       DataCell(
-        Text("$total "),
+        Text("${model!.getFormatedDate(date)}"),
       ),
     ],
   );

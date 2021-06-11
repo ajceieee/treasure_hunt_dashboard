@@ -41,7 +41,7 @@ class UserApiService extends UserSer {
   @override
   Future<UserModel?>? getUserDetails(String? uuId) async {
     try {
-      final response = await _apiService.get(USER_GET + "/$uuId");
+      final response = await _apiService.get(USER_POST + "/$uuId");
       if (response['message'] == "Ok")
         return UserModel.fromJson(response["result"]);
       else
