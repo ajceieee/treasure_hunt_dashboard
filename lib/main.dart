@@ -22,10 +22,11 @@ void main() {
     FlutterError.onError = (FlutterErrorDetails details) {
       FlutterError.dumpErrorToConsole(details);
     };
+    /// used for crash analytics
     await SentryFlutter.init(
       (options) {
         options.dsn =
-            'https://240d4c477f5b4d368a0b92bdaac33627@o784930.ingest.sentry.io/5799217';
+            '';
       },
       appRunner: () => runApp(MyApp()),
     );
