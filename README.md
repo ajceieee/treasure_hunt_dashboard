@@ -1,6 +1,6 @@
 # Treasure hunt live dashboard for Quaruntime event
 
-Website developed using **flutter web**💻.
+Website developed using **flutter web**💻 with stacked architecture(MVVM).
 
 **note**
 > You can only view the dashboard after signing for treasurehunt [click here](https://treasure-hunt-comp.web.app) to register😬.
