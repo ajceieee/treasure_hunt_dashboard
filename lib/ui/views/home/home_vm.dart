@@ -131,17 +131,17 @@ class HomeScreenVM extends FutureViewModel<bool> {
           if (userDetails.data != null) {
             if (userDetails.data!.isNotEmpty) {
               userDetails.data!.sort((a, b) {
-                if (a.lastAnsweredTime != null && b.lastAnsweredTime != null) {
+                if (a.highestLevelPlayed == b.highestLevelPlayed) {
                   var firstTime = getDateTime(a.lastAnsweredTime);
                   var secondTime = getDateTime(b.lastAnsweredTime);
-                  return firstTime!.compareTo(secondTime!);
+                  if (firstTime != null && secondTime != null) {
+                    return firstTime.compareTo(secondTime);
+                  } else
+                    return -1;
+                } else {
+                  return b.highestLevelPlayed!.compareTo(a.highestLevelPlayed!);
                 }
-                return -1;
               });
-              userDetails.data!.sort(
-                (a, b) =>
-                    b.highestLevelPlayed!.compareTo(a.highestLevelPlayed!),
-              );
               setUsersData = userDetails.data!;
               Map<int, List<Data>> datas = groupBy(userDetails.data!, (user) {
                 return user.highestLevelPlayed!;

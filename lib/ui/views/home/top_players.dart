@@ -48,6 +48,7 @@ class TopPlayers extends ViewModelWidget<HomeScreenVM> {
                           )),
                         )
                       : ListView(
+                          physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           children: [
                             if (model.groupList != null)
