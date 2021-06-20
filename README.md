@@ -1,16 +1,21 @@
-# flutter_boiler_plate
+# Leaderboard for Quaruntime Event
 
-A new Flutter application.
+Website developed using **flutter web** 💻 with stacked architecture(MVVM).
 
-## Getting Started
+Don't know flutter [Click here](https://flutter.dev/) to learn more.
 
-This project is a starting point for a Flutter application.
+[click here](https://quaruntime.web.app/) to view the leaderboard.
 
-A few resources to get you started if this is your first Flutter project:
+## How to use
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Step 1
+    > Clone the project
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Step 2
+    > Type `pub get` in the root folder of the project
+
+### Step 3(optional)
+    > Use sentry for crash analytics
+
+### Step 4
+    > Type command `flutter run` in the root folder of the project
